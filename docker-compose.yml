@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+    app:
+        build:
+            args:
+                user: thcborges
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: sala-de-estudos
+        container_name: sala-de-estudos-app
+        restart: unless-stopped
+        working_dir: /var/www
+        volumes:
+            - ./sala-de-estudos:/var/www
+        networks:
+            - sala-de-estudos
+
+    db:
+        image: mariadb:10.4
+        container_name: sala-de-estudos-db
+        restart: unless-stopped
+        environment:
+            MYSQ_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        ports:
+            - 3306:3306
+        volumes:
+            - ./docker-compose/mysql/data:/var/lib/mysql
+            - ./docker-compose/mysql/init:/docker-entrypoint-initdb.d
+        networks:
+            - sala-de-estudos
+
+    nginx:
+        image: library/nginx:1.19-alpine
+        container_name: sala-de-estudos-nginx
+        restart: always
+        ports:
+            - 8000:80
+        volumes:
+            - ./sala-de-estudos:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d
+        networks:
+            - sala-de-estudos
+
+networks:
+  sala-de-estudos:
+      driver: bridge
