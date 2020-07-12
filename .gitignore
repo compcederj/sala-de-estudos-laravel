@@ -11,23 +11,24 @@ npm-debug.log
 yarn-error.log
 
 # Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+sala-de-estudos/bootstrap/compiled.php
+sala-de-estudos/app/storage/
 
 # Laravel 5 & Lumen specific
-public/storage
-public/hot
+sala-de-estudos/public/storage
+sala-de-estudos/public/hot
 
 # Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
+sala-de-estudos/public_html/storage
+sala-de-estudos/public_html/hot
 
-storage/*.key
+sala-de-estudos/storage/*.key
 .env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
+sala-de-estudos/.env
+sala-de-estudos/Homestead.yaml
+sala-de-estudos/Homestead.json
+sala-de-estudos/.vagran*t
+sala-de-estudos/.phpunit.result.cache
 
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -116,3 +117,4 @@ out
 gen
 /.idea/*
 .idea/*
+*.zip
